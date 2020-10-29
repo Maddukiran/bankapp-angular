@@ -1,1 +1,22 @@
-<p>create-account works!</p>
+Welcome {{loggedInUser.name}}
+
+<h1>Create Account </h1>
+
+<div class="row">
+    <div class="col-4">
+
+        <form (ngSubmit)="createAccount()" autocomplete="off">
+            <div class="form-group">
+                <label for="">Account Type</label>
+                <select class="form-control" name="accountType" [(ngModel)]="accountType" required >
+                    <option value="PERSONAL">Personal</option>
+                    <option value="BUSINESS">Business</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+    </div>
+</div>
