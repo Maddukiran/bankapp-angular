@@ -19,7 +19,12 @@ export class CreateAccountComponent implements OnInit {
 
   createAccount(){
     console.log("AccountType" , this.accountType);
-    let formData = { accountNo: 1 , userId: this.loggedInUser.id , accountType: this.accountType, balance: 0 , status:"INACTIVE"};
+
+    let generatedAccountNo =  Math.floor(100 + Math.random() * 900);//Generate 4 digit number
+    console.log("GeneratedAccountNo", generatedAccountNo);
+
+    let formData = { accountNo: generatedAccountNo , userId: this.loggedInUser.id , accountType: this.accountType, balance: 0 , status:"INACTIVE",
+  kycStatus:"PENDING", createdBy: this.loggedInUser.id};
     console.log(formData);
 
     let accounts = JSON.parse(localStorage.getItem("ACCOUNTS")) || [];

@@ -8,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewAccountComponent implements OnInit {
 
+  accounts;
   constructor() { }
 
   ngOnInit(): void {
+    this.loadMyAccounts();
+  }
+
+  loadMyAccounts(){
+    this.accounts = JSON.parse(localStorage.getItem("ACCOUNTS")) || [];
   }
 
 }

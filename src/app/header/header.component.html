@@ -5,11 +5,11 @@
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="index.html" data-loggedin=false>Home</a>
+                <a class="nav-link" routerLink="home" data-loggedin=false routeLink="home">Home</a>
             </li>
            
             <li class="nav-item dropdown" data-logged="false" *ngIf="loggedInUser">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Features</a>
+                <a class="nav-link dropdown-toggle disabled" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Features</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a class="dropdown-item" href="account_type_list.html" data-loggedin=false>Account Types</a>    
                     <a class="dropdown-item" href="branch_list.html" data-loggedin=false>List Branches</a>                
@@ -19,24 +19,24 @@
             <li class="nav-item dropdown" data-loggedin="true">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="loggedInUser">Account</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="deposit.html" data-loggedin=true>Deposit</a>
-                     <a class="dropdown-item" href="withdrawal.html" data-loggedin=true>Withdrawal</a>
-                     <a class="dropdown-item" href="fund_transfer.html" data-loggedin=true>Fund Transfer</a>
-                    <a class="dropdown-item" href="transaction_list.html" data-loggedin=true>View Transactions</a>
-                    <a class="dropdown-item" href="view_balance.html" data-loggedin=true> View Balance</a>
+                    <a class="dropdown-item" routerLink="deposit" data-loggedin=true>Deposit</a>
+                     <a class="dropdown-item" routerLink="withdraw" data-loggedin=true>Withdraw</a>
+                     <a class="dropdown-item " routerLink="fund-transfer" data-loggedin=true>Fund Transfer</a>
+                    <a class="dropdown-item" routerLink="view-transactions" data-loggedin=true>View Transactions</a>
+                    <a class="dropdown-item" routerLink="view-account" data-loggedin=true> View Balance</a>
                     
                 </div>
             </li>
             <li class="nav-item dropdown" data-loggedin="true" *ngIf="loggedInUser">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Payments</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="payee_list.html">List Payee</a>          
-                    <a class="dropdown-item" href="add_payee.html" data-loggedin=true>Add Payee</a>
-                    <a class="dropdown-item" href="recharge.html" data-loggedin=true>Recharge</a>
+                    <a class="dropdown-item" routerLink="view-payees">List Payee</a>          
+                    <a class="dropdown-item" routerLink="add-payee" data-loggedin=true>Add Payee</a>
+                    <a class="dropdown-item disabled" href="recharge.html" data-loggedin=true>Recharge</a>
                 </div>
             </li>
             <li class="nav-item dropdown" data-loggedin=true *ngIf="loggedInUser">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CreditCard</a>
+                <a class="nav-link dropdown-toggle disabled" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CreditCard</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a class="dropdown-item" href="add_creditcard.html" data-loggedin=true *ngIf="loggedInUser">Add Credit Card</a>          
                     <a class="dropdown-item" href="list_creditcard.html" data-loggedin=true *ngIf="loggedInUser">List Credit Card</a>
@@ -50,7 +50,7 @@
                 <a class="nav-link" routerLink="verify-account" data-loggedin=true *ngIf="loggedInUser">Account Activation</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="kyc.html" data-loggedin=true *ngIf="loggedInUser">KYC</a>
+                <a class="nav-link disabled" href="kyc.html" data-loggedin=true *ngIf="loggedInUser" >KYC</a>
             </li>
             
             

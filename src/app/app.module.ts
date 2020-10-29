@@ -13,6 +13,10 @@ import { DepositComponent } from './deposit/deposit.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { ViewTransactionsComponent } from './view-transactions/view-transactions.component';
 import {FormsModule} from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { AddPayeeComponent } from './add-payee/add-payee.component';
+import { FundTransferComponent } from './fund-transfer/fund-transfer.component';
+import { ViewPayeesComponent } from './view-payees/view-payees.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import {FormsModule} from '@angular/forms';
     VerifyAccountComponent,
     DepositComponent,
     WithdrawComponent,
-    ViewTransactionsComponent
+    ViewTransactionsComponent,
+    HomeComponent,
+    AddPayeeComponent,
+    FundTransferComponent,
+    ViewPayeesComponent
   ],
   imports: [
     BrowserModule,

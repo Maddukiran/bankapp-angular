@@ -8,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewTransactionsComponent implements OnInit {
 
+  transactions;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.loadMyTransactions();
+  }
+
+  loadMyTransactions(){
+    this.transactions = JSON.parse(localStorage.getItem("TRANSACTIONS")) || [];
+    
   }
 
 }

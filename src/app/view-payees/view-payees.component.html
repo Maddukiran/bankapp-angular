@@ -1,0 +1,30 @@
+<h1>My Payees</h1>
+
+<div class="row">
+    <div class="col-12">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr><th>Sno</th><th>Short Name</th> <th>Name</th> <th>Account No </th><th>IFSC</th> <th> Added On</th> <th>Action</th></tr>
+
+            </thead>
+            <tbody>
+                <tr *ngFor="let obj of payeeList;let i=index;">
+                    <td>{{i+1}}</td>
+                    <td>{{obj.shortName}}</td>
+                    <td>{{obj.name}}</td>
+                    <td>{{obj.accountNo}}</td>
+                    <td>{{obj.ifsc}}</td>
+                    <td>{{obj.createdOn}}</td>
+                    <td>
+                       <a routerLink="../fund-transfer" class="btn btn-primary">Fund Transfer</a>   &nbsp;&nbsp;
+                       <button (click)="removePayee(obj,index)" class="btn btn-danger">Delete</button>                   
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button routerLink="../add-payee" class="btn btn-secondary">Add Payee</button>
+    </div>
+</div>
+
