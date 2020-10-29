@@ -145,6 +145,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bankapp-angular"
+    }
+  },
+  "defaultProject": "bankapp-angular",
+  "cli": {
+    "analytics": "f8ff7c06-a28b-4796-b549-b767b359cb3c"
+  }
 }
