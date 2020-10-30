@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-add-payee',
@@ -17,11 +19,11 @@ export class AddPayeeComponent implements OnInit {
   accountNo:number;
   ifsc:string;
 
-  constructor() { }
+  constructor(private router:Router, private authService:AuthService) { }
 
   ngOnInit(): void {
 
-    this.loggedInUser = JSON.parse( localStorage.getItem("LOGGED_IN_USER"));
+    this.loggedInUser = this.authService.getLoggedInUser();
     this.payeeList = JSON.parse(localStorage.getItem("PAYEES")) || [];
   }
 
@@ -38,6 +40,8 @@ export class AddPayeeComponent implements OnInit {
     localStorage.setItem("PAYEES", JSON.stringify(this.payeeList));
 
     alert("Successfully Payee added");
+
+    this.router.navigate(['view-payees']);
   }
 
 

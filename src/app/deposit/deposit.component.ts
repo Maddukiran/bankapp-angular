@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AccountService } from '../account.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-deposit',
@@ -17,17 +20,21 @@ export class DepositComponent implements OnInit {
 
   transactions;
 
+  loggedInUser;
   
-  constructor() { }
+  constructor(private router:Router, private authService: AuthService, private accountService:AccountService) { }
 
   ngOnInit(): void {
+    this.loggedInUser = this.authService.getLoggedInUser();
     this.transactions = JSON.parse(localStorage.getItem("TRANSACTIONS")) || [];
     this.loadMyAccounts();
   }
 
   loadMyAccounts(){
-    let accounts = JSON.parse(localStorage.getItem("ACCOUNTS")) || [];
-    this.accounts = accounts;
+    //let accounts:any = JSON.parse(localStorage.getItem("ACCOUNTS")) || [];
+    //let myAccounts = accounts.filter(obj=>obj.userId == this.loggedInUser.id ); 
+    //this.accounts = myAccounts;
+    this.accounts  = this.accountService.getMyAccounts();
   }
 
   deposit(){
@@ -60,6 +67,7 @@ export class DepositComponent implements OnInit {
     this.accounts[index] = selectedAccount;
     localStorage.setItem("ACCOUNTS", JSON.stringify(this.accounts));
 
+    this.router.navigate(["view-account"]);
   }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,18 +10,17 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   loggedInUser;
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   // Before login, loggedInUser = null
   // After login, loggedInUser = { id: 1, name:"Naresh"}
   ngOnInit(): void {
-
-    let user = localStorage.getItem("LOGGED_IN_USER");
-    this.loggedInUser = user != null ? JSON.parse(user): null;
+   
+    this.loggedInUser = this.authService.getLoggedInUser();
     console.log("LoggedInUser", this.loggedInUser);
   }
 
   logout(){
-    localStorage.removeItem("LOGGED_IN_USER");
+    this.authService.logout();
   }
 }

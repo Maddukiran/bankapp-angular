@@ -17,6 +17,8 @@ import { HomeComponent } from './home/home.component';
 import { AddPayeeComponent } from './add-payee/add-payee.component';
 import { FundTransferComponent } from './fund-transfer/fund-transfer.component';
 import { ViewPayeesComponent } from './view-payees/view-payees.component';
+import { ListUsersComponent } from './list-users/list-users.component';
+import { ListEmployeesComponent } from './list-employees/list-employees.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { ViewPayeesComponent } from './view-payees/view-payees.component';
     HomeComponent,
     AddPayeeComponent,
     FundTransferComponent,
-    ViewPayeesComponent
+    ViewPayeesComponent,
+    ListUsersComponent,
+    ListEmployeesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+<h1>List Employees</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sno</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>        
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users;let i=index;">
+            <td>{{i+1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+
+        </tr>
+    </tbody>
+</table>

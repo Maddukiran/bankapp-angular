@@ -16,8 +16,8 @@
                 </div>
             </li>
             
-            <li class="nav-item dropdown" data-loggedin="true">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="loggedInUser">Account</a>
+            <li class="nav-item dropdown" data-loggedin="true" >
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="loggedInUser && loggedInUser.role=='USER'">Account</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a class="dropdown-item" routerLink="deposit" data-loggedin=true>Deposit</a>
                      <a class="dropdown-item" routerLink="withdraw" data-loggedin=true>Withdraw</a>
@@ -27,7 +27,7 @@
                     
                 </div>
             </li>
-            <li class="nav-item dropdown" data-loggedin="true" *ngIf="loggedInUser">
+            <li class="nav-item dropdown" data-loggedin="true" *ngIf="loggedInUser && loggedInUser.role=='USER'">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Payments</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a class="dropdown-item" routerLink="view-payees">List Payee</a>          
@@ -35,7 +35,7 @@
                     <a class="dropdown-item disabled" href="recharge.html" data-loggedin=true>Recharge</a>
                 </div>
             </li>
-            <li class="nav-item dropdown" data-loggedin=true *ngIf="loggedInUser">
+            <li class="nav-item dropdown" data-loggedin=true *ngIf="loggedInUser && loggedInUser.role=='USER'">
                 <a class="nav-link dropdown-toggle disabled" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CreditCard</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a class="dropdown-item" href="add_creditcard.html" data-loggedin=true *ngIf="loggedInUser">Add Credit Card</a>          
@@ -43,11 +43,19 @@
                     
                 </div>
             </li>
+            <li class="nav-item dropdown" data-loggedin="true" *ngIf="loggedInUser && loggedInUser.role=='ADMIN'">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" routerLink="users">List Users</a>          
+                    <a class="dropdown-item" routerLink="employees" data-loggedin=true>List Employees</a>
+                    
+                </div>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="create-account" data-loggedin=true *ngIf="loggedInUser">Create Account</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="verify-account" data-loggedin=true *ngIf="loggedInUser">Account Activation</a>
+                <a class="nav-link" routerLink="verify-account" data-loggedin=true *ngIf="loggedInUser && loggedInUser.role=='ADMIN'">Account Activation</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="kyc.html" data-loggedin=true *ngIf="loggedInUser" >KYC</a>
@@ -62,12 +70,12 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="register" data-loggedin=false *ngIf="!loggedInUser">Register</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="" data-loggedin=true style="display: block;" *ngIf="loggedInUser"> 
-                    Welcome {{loggedInUser.name}}</a>
+            <li class="nav-item" *ngIf="loggedInUser">
+                <a class="nav-link" href="" data-loggedin=true style="display: block;" > 
+                    Welcome {{loggedInUser.name}} ( {{loggedInUser.id}} )</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="" (click)="logout()" data-loggedin=true *ngIf="loggedInUser">(Logout) </a>
+            <li class="nav-item" *ngIf="loggedInUser">
+                <a class="nav-link" href="" (click)="logout()" data-loggedin=true >(Logout) </a>
             </li>
         </ul>
         

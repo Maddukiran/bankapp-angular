@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AccountService } from '../account.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-withdraw',
@@ -15,16 +18,20 @@ export class WithdrawComponent implements OnInit {
 
   transactions;
 
-  constructor() {}
+  loggedInUser;
+  constructor(private router:Router, private authService:AuthService, private accountService:AccountService) {}
 
   ngOnInit(): void {
+    this.loggedInUser = this.authService.getLoggedInUser();
     this.transactions = JSON.parse(localStorage.getItem('TRANSACTIONS')) || [];
     this.loadMyAccounts();
   }
 
   loadMyAccounts() {
-    let accounts = JSON.parse(localStorage.getItem('ACCOUNTS')) || [];
-    this.accounts = accounts;
+    //let accounts = JSON.parse(localStorage.getItem('ACCOUNTS')) || [];
+    //let myAccounts = accounts.filter(obj=>obj.userId == this.loggedInUser.id ); 
+    //this.accounts = myAccounts;   
+    this.accounts = this.accountService.getMyAccounts(); 
   }
 
   withdraw() {
@@ -62,5 +69,7 @@ export class WithdrawComponent implements OnInit {
     //Update account with latest balance
     this.accounts[index] = selectedAccount;
     localStorage.setItem('ACCOUNTS', JSON.stringify(this.accounts));
+
+    this.router.navigate(["view-account"]);
   }
 }

@@ -4,6 +4,8 @@ import { AddPayeeComponent } from './add-payee/add-payee.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { FundTransferComponent } from './fund-transfer/fund-transfer.component';
+import { ListEmployeesComponent } from './list-employees/list-employees.component';
+import { ListUsersComponent } from './list-users/list-users.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { VerifyAccountComponent } from './verify-account/verify-account.component';
@@ -25,6 +27,8 @@ const routes: Routes = [
   {path:'view-transactions', component:ViewTransactionsComponent},
   {path:'add-payee', component:AddPayeeComponent},
   {path:'view-payees', component:ViewPayeesComponent},
+  {path:'users', component:ListUsersComponent},
+  {path:'employees', component:ListEmployeesComponent},
   {path:'', redirectTo:'login', pathMatch:'full'}
 
 ];

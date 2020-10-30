@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +12,10 @@ export class RegisterComponent implements OnInit {
   name:string;
   email:string;
   password:string;
+  role:string;
 
   users;
-  constructor() { 
+  constructor(private router:Router) { 
 
   }
 
@@ -22,7 +24,10 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    let userObj=  { name: this.name , email: this.email , password: this.password};
+    let generateUserId =  Math.floor(100 + Math.random() * 900);//Generate 4 digit number
+
+    let userObj=  { id: generateUserId, name: this.name , email: this.email , password: this.password, 
+      role:this.role};
     console.log(userObj);
 
     //Validate Email already exists
@@ -45,6 +50,9 @@ export class RegisterComponent implements OnInit {
       localStorage.setItem("USERS", JSON.stringify(this.users));
 
       alert("Successfully Registered");
+      this.router.navigate(['login']);
+
+
     }
 
 

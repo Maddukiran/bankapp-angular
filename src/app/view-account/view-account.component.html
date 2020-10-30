@@ -17,8 +17,8 @@
                     <td>{{account.kycStatus}}</td>
                     <td>{{account.status}}</td>
                     <td>
-                       <a routerLink="../deposit" class="btn btn-success">Deposit</a>                       &nbsp;
-                       <a routerLink="../withdraw" class="btn btn-secondary">Withdraw</a>                       &nbsp;
+                       <button  routerLink="../deposit" class="btn btn-success">Deposit</button>                       &nbsp;
+                       <button [disabled]="account.status=='INACTIVE'" routerLink="../withdraw" class="btn btn-secondary">Withdraw</button>                       &nbsp;
                        <a routerLink="../view-transactions" class="btn btn-info">View Transactions</a>                       &nbsp;
                     </td>
                 </tr>
