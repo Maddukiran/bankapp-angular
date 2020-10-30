@@ -19,6 +19,9 @@ import { FundTransferComponent } from './fund-transfer/fund-transfer.component';
 import { ViewPayeesComponent } from './view-payees/view-payees.component';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { ListEmployeesComponent } from './list-employees/list-employees.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import { ListEmployeesComponent } from './list-employees/list-employees.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

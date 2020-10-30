@@ -1,5 +1,7 @@
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../user.service';
 
 @Component({
@@ -16,7 +18,7 @@ export class RegisterComponent implements OnInit {
   role:string;
 
   users;
-  constructor(private router:Router, private userService:UserService) { 
+  constructor(private router:Router, private toastr:ToastrService, private userService:UserService) { 
 
   }
 
@@ -42,7 +44,8 @@ export class RegisterComponent implements OnInit {
 
     //Display message
     if(emailAlreadyExists){
-      alert("Email already registered");
+     // alert("Email already registered");
+      this.toastr.warning("Email already registered");
     }
     else{ 
       
@@ -51,9 +54,10 @@ export class RegisterComponent implements OnInit {
       //localStorage.setItem("USERS", JSON.stringify(this.users));
 
       this.userService.register(userObj);
-      alert("Successfully Registered");
-      this.router.navigate(['login']);
+      //alert("Successfully Registered");     
+      this.toastr.info("Successfully Registered");
 
+      this.router.navigate(['login']);
 
     }
 

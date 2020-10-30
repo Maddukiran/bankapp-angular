@@ -19,7 +19,13 @@ export class AddPayeeComponent implements OnInit {
   accountNo:number;
   ifsc:string;
 
-  constructor(private router:Router, private authService:AuthService) { }
+  //Dependency Injection
+  // Normal JS : let authService = new AuthService();
+  // Normal JS:  let obj = new AddPayeeComponent(authService);
+  // DI: Angular will create an object and assign it to the variable 
+  constructor(private router:Router, private authService:AuthService) { 
+    
+  }
 
   ngOnInit(): void {
 
