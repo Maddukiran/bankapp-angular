@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
     //Display message
     if(emailAlreadyExists){
      // alert("Email already registered");
-      this.toastr.warning("Email already registered");
+      this.toastr.error("Email already registered");
     }
     else{ 
       
