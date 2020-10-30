@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -15,12 +16,12 @@ export class RegisterComponent implements OnInit {
   role:string;
 
   users;
-  constructor(private router:Router) { 
+  constructor(private router:Router, private userService:UserService) { 
 
   }
 
   ngOnInit(): void {
-    this.users  = JSON.parse(localStorage.getItem("USERS")) || [];
+    this.users  = this.userService.getAllUsers();
   }
 
   register(){
@@ -46,9 +47,10 @@ export class RegisterComponent implements OnInit {
     else{ 
       
       //Store user in localStorage
-      this.users.push(userObj);
-      localStorage.setItem("USERS", JSON.stringify(this.users));
+      //this.users.push(userObj);
+      //localStorage.setItem("USERS", JSON.stringify(this.users));
 
+      this.userService.register(userObj);
       alert("Successfully Registered");
       this.router.navigate(['login']);
 
