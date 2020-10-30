@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     for(let obj of this.users){
       if (obj.email == this.email && obj.password == this.password) {
         delete obj.password;
-        localStorage.setItem("LOGGED_IN_USER", JSON.stringify(obj));
+        this.authService.storeLoginDetails(obj);
         userExists = true;
         break;
       }
