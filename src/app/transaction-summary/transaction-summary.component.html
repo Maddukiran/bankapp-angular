@@ -1,0 +1,38 @@
+<h3>Transaction Summary </h3>
+
+
+<!-- {{ transactionList | json}} -->
+
+
+<div class="row">
+    <div class="col-12">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr><th>Sno</th><th>Transaction No</th><th>Account No</th> <th>Transaction Type</th> 
+                    <th>Amount </th> <th>Transaction Date</th> <th>Comments</th><th>Status</th></tr>
+
+            </thead>
+            <tbody>
+                <tr *ngFor="let obj of transactionList;let i=index;">
+                    <td>{{i+1}}</td>
+                    <td>{{obj.transactionId}}</td>                    
+                    <td>{{obj.accountNo}}</td>
+                    <td>{{obj.transactionType}}</td>
+                    <td>{{obj.amount}}</td>
+                    <td>{{obj.transactionDate}}</td>                    
+                    <td>{{obj.comments}}</td>
+                    <td>{{obj.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="alert alert-info">
+            Note: Last 5 transactions
+        </div>
+    </div>
+</div>

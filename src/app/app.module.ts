@@ -23,6 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
 import { ToastrModule } from 'ngx-toastr';
 import { ListMyAccountComponent } from './list-my-account/list-my-account.component';
+import { AccountComponent } from './account/account.component';
+import { TransactionSummaryComponent } from './transaction-summary/transaction-summary.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { ListMyAccountComponent } from './list-my-account/list-my-account.compon
     ViewPayeesComponent,
     ListUsersComponent,
     ListEmployeesComponent,
-    ListMyAccountComponent
+    ListMyAccountComponent,
+    AccountComponent,
+    TransactionSummaryComponent
   ],
   imports: [
     BrowserModule,

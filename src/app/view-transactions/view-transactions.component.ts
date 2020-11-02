@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TransactionService } from '../transaction.service';
 
 @Component({
   selector: 'app-view-transactions',
@@ -10,14 +11,14 @@ export class ViewTransactionsComponent implements OnInit {
 
   transactions;
 
-  constructor() { }
+  constructor(private transactionService:TransactionService) { }
 
   ngOnInit(): void {
     this.loadMyTransactions();
   }
 
   loadMyTransactions(){
-    this.transactions = JSON.parse(localStorage.getItem("TRANSACTIONS")) || [];
+    this.transactions = this.transactionService.getAllTransactions();
     
   }
 

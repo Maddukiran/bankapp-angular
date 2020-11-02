@@ -17,14 +17,20 @@
                     <td>{{account.kycStatus}}</td>
                     <td>{{account.status}}</td>
                     <td>                        
-                       <button  routerLink="../deposit" class="btn btn-success">Deposit</button>                       &nbsp;
-                       <button [disabled]="account.status=='INACTIVE'" routerLink="../withdraw" class="btn btn-secondary">Withdraw</button>                       &nbsp;
-                       <button [disabled]="account.status=='INACTIVE'" routerLink="../fund-transfer" class="btn btn-secondary">Fund Transfer</button>                       &nbsp;
-                       <a routerLink="../view-transactions" class="btn btn-info">View Transactions</a>                       &nbsp;
+                       <button  routerLink="deposit" class="btn btn-success">Deposit</button>                       &nbsp;
+                       <button [disabled]="account.status=='INACTIVE'" routerLink="withdraw" class="btn btn-secondary">Withdraw</button>                       &nbsp;
+                       <button [disabled]="account.status=='INACTIVE'" routerLink="fund-transfer" class="btn btn-secondary">Fund Transfer</button>                       &nbsp;
+                       <a routerLink="view-transactions" class="btn btn-info">View Transactions</a>                       &nbsp;
                     </td>
                 </tr>
             </tbody>
         </table>
 
+    </div>
+</div>
+
+<div class="row">
+    <div class="col" *ngIf="accountId">
+        <app-transaction-summary [accountNo]="accountId"></app-transaction-summary>
     </div>
 </div>

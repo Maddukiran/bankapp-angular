@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../account.service';
 import { AuthService } from '../auth.service';
 
@@ -11,7 +11,7 @@ import { AuthService } from '../auth.service';
 })
 export class DepositComponent implements OnInit {
 
-  accounts;
+  account;
 
   accountNo;
 
@@ -21,8 +21,13 @@ export class DepositComponent implements OnInit {
   transactions;
 
   loggedInUser;
+
   
-  constructor(private router:Router, private authService: AuthService, private accountService:AccountService) { }
+  constructor(private route:ActivatedRoute, private router:Router, private authService: AuthService, private accountService:AccountService) { 
+    this.route.parent.params.subscribe(params=>{
+      this.accountNo =  params["accountNo"];
+    });
+  }
 
   ngOnInit(): void {
     this.loggedInUser = this.authService.getLoggedInUser();
@@ -34,7 +39,7 @@ export class DepositComponent implements OnInit {
     //let accounts:any = JSON.parse(localStorage.getItem("ACCOUNTS")) || [];
     //let myAccounts = accounts.filter(obj=>obj.userId == this.loggedInUser.id ); 
     //this.accounts = myAccounts;
-    this.accounts  = this.accountService.getMyAccounts();
+    this.account  = this.accountService.findAccount(this.accountNo);
   }
 
   deposit(){
@@ -56,7 +61,7 @@ export class DepositComponent implements OnInit {
     localStorage.setItem("TRANSACTIONS", JSON.stringify(this.transactions));
 
     alert("Successfully Deposited amount");
-
+/*
     //Update balance
     let selectedAccount = this.accounts.find(obj=>obj.accountNo == this.accountNo);
     let index = this.accounts.findIndex(obj=>obj.accountNo == this.accountNo);
@@ -66,7 +71,7 @@ export class DepositComponent implements OnInit {
     //Update account with latest balance
     this.accounts[index] = selectedAccount;
     localStorage.setItem("ACCOUNTS", JSON.stringify(this.accounts));
-
+*/
     this.router.navigate(["view-account"]);
   }
 
