@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-verify-account',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerifyAccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(private toastr:ToastrService) { }
 
   accounts;
 
@@ -19,9 +20,16 @@ export class VerifyAccountComponent implements OnInit {
 
   approve(account, index){
     console.log("Going to approve", account);
-    account.status = "ACTIVE";
-    this.accounts[index] = account;
-    localStorage.setItem("ACCOUNTS", JSON.stringify(this.accounts) );
+    
+    let cfm = confirm("Do you want to activate Account ");
+    if(cfm){
+      account.status = "ACTIVE";
+      this.accounts[index] = account;
+      localStorage.setItem("ACCOUNTS", JSON.stringify(this.accounts) );
+      this.toastr.success("Account Activated Succcessfully");
+      }
+    
+
     
   }
 

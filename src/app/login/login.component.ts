@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
 
@@ -14,7 +16,8 @@ export class LoginComponent implements OnInit {
   password:string;
 
   users;
-  constructor(private authService:AuthService, private userService:UserService) { 
+  constructor(private authService:AuthService, private userService:UserService, private toastr:ToastrService,
+    private router:Router) { 
 
   }
 
@@ -39,11 +42,15 @@ export class LoginComponent implements OnInit {
 
     //Display message
     if(userExists){
-      alert("Valid Login");
+     // alert("Valid Login");
+      this.toastr.success("Successfully Loggedin");
+      
       window.location.reload();
+      this.router.navigate(['my-accounts']);
     }
     else{ 
-      alert("Invalid Login Credentials");
+      //alert("Invalid Login Credentials");
+      this.toastr.error("Invalid Login Credentials");
     }
 
 

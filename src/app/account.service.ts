@@ -20,6 +20,12 @@ export class AccountService {
     return myAccounts;
   }
 
+  findAccount(accountId){
+    let accounts:any = this.getAllAccounts();
+    let account = accounts.find(obj=>obj.accountNo == accountId);
+    return account;
+  }
+
   createAccount(accountObj){
     let accounts = JSON.parse(localStorage.getItem("ACCOUNTS")) || [];
     accounts.push(accountObj);

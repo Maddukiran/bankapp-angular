@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../account.service';
 import { AuthService } from '../auth.service';
 
@@ -12,7 +13,7 @@ import { AuthService } from '../auth.service';
 export class CreateAccountComponent implements OnInit {
 
   loggedInUser;
-  constructor(private router:Router, private authService:AuthService, private accountService:AccountService) { }
+  constructor(private router:Router, private authService:AuthService, private accountService:AccountService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.loggedInUser = this.authService.getLoggedInUser();
@@ -34,8 +35,7 @@ export class CreateAccountComponent implements OnInit {
     //accounts.push(formData);
     //localStorage.setItem("ACCOUNTS", JSON.stringify(accounts));
     this.accountService.createAccount(accountObj);
-    alert("Account created successfully");
-
+    this.toastr.success("Account created successfully");
     
 
     this.router.navigate(["view-account"]);

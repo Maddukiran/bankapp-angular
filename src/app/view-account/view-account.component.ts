@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AccountService } from '../account.service';
 import { AuthService } from '../auth.service';
 
@@ -11,18 +12,27 @@ import { AuthService } from '../auth.service';
 export class ViewAccountComponent implements OnInit {
 
   loggedInUser;
-  accounts;
-  constructor(private authService:AuthService, private accountService:AccountService) { }
+  accountId:number;
+  account;
+
+  constructor(private route: ActivatedRoute,private authService:AuthService, private accountService:AccountService) {
+
+    this.route.params.subscribe(params=>{
+      //console.log(params);
+      this.accountId = params["accountNo"];
+      console.log(this.accountId);
+    });
+
+   }
 
   ngOnInit(): void {
     this.loggedInUser = this.authService.getLoggedInUser();
-    this.loadMyAccounts();
+    this.loadAccountDetails(this.accountId);
   }
 
-  loadMyAccounts(){
-   // let data:any =  JSON.parse(localStorage.getItem("ACCOUNTS")) || [];
-    //this.accounts =  data.filter(obj=>obj.userId == this.loggedInUser.id);
-    this.accounts = this.accountService.getMyAccounts();
+  loadAccountDetails(accountId){
+    this.account = this.accountService.findAccount(accountId);
+    console.log(this.account);
   }
 
 }

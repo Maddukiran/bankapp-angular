@@ -1,24 +1,25 @@
-<h1>My Accounts</h1>
+<h3>View Account</h3>
 
 <div class="row">
     <div class="col-12">
 
         <table class="table table-bordered">
             <thead>
-                <tr><th>Sno</th><th>Account No</th> <th>Account Type</th> <th>Balance </th><th>KYC</th> <th>Account Status</th> <th>Action</th></tr>
+                <tr><th>Account No</th> <th>Account Type</th> <th>Balance </th><th>KYC</th> <th>Account Status</th> <th>Action</th></tr>
 
             </thead>
             <tbody>
-                <tr *ngFor="let account of accounts;let i=index;">
-                    <td>{{i+1}}</td>
+                <tr *ngIf="account">
+                    
                     <td>{{account.accountNo}}</td>
                     <td>{{account.accountType}}</td>
                     <td>{{account.balance}}</td>
                     <td>{{account.kycStatus}}</td>
                     <td>{{account.status}}</td>
-                    <td>
+                    <td>                        
                        <button  routerLink="../deposit" class="btn btn-success">Deposit</button>                       &nbsp;
                        <button [disabled]="account.status=='INACTIVE'" routerLink="../withdraw" class="btn btn-secondary">Withdraw</button>                       &nbsp;
+                       <button [disabled]="account.status=='INACTIVE'" routerLink="../fund-transfer" class="btn btn-secondary">Fund Transfer</button>                       &nbsp;
                        <a routerLink="../view-transactions" class="btn btn-info">View Transactions</a>                       &nbsp;
                     </td>
                 </tr>

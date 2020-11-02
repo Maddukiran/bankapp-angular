@@ -22,6 +22,7 @@ import { ListEmployeesComponent } from './list-employees/list-employees.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
 import { ToastrModule } from 'ngx-toastr';
+import { ListMyAccountComponent } from './list-my-account/list-my-account.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ToastrModule } from 'ngx-toastr';
     FundTransferComponent,
     ViewPayeesComponent,
     ListUsersComponent,
-    ListEmployeesComponent
+    ListEmployeesComponent,
+    ListMyAccountComponent
   ],
   imports: [
     BrowserModule,
