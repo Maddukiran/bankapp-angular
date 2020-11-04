@@ -1,5 +1,12 @@
 <h1>Transactions</h1>
 
+Filter: Transaction Type:
+<select id="" [(ngModel)]="transactionTypeFilter" (change)="doFilter(this.value)">
+    <option value="ALL" >--ALL--</option>
+    <option value="CREDIT">CREDIT</option>
+    <option value="DEBIT">DEBIT</option>
+</select>
+
 <div class="row">
     <div class="col-12">
 
@@ -10,7 +17,7 @@
 
             </thead>
             <tbody>
-                <tr *ngFor="let obj of transactions;let i=index;">
+                <tr *ngFor="let obj of filtedTransactions;let i=index;">
                     <td>{{i+1}}</td>
                     <td>{{obj.transactionId}}</td>                    
                     <td>{{obj.accountNo}}</td>

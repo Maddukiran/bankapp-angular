@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../account.service';
 import { AuthService } from '../auth.service';
 
@@ -9,7 +10,7 @@ import { AuthService } from '../auth.service';
   styles: [],
 })
 export class WithdrawComponent implements OnInit {
-  accounts;
+  account;
 
   accountNo;
 
@@ -19,7 +20,11 @@ export class WithdrawComponent implements OnInit {
   transactions;
 
   loggedInUser;
-  constructor(private router:Router, private authService:AuthService, private accountService:AccountService) {}
+  constructor(private router:Router, private authService:AuthService, private accountService:AccountService, private route:ActivatedRoute, private toastr:ToastrService) {
+    this.route.parent.params.subscribe(params=>{
+      this.accountNo =  params["accountNo"];
+    });
+  }
 
   ngOnInit(): void {
     this.loggedInUser = this.authService.getLoggedInUser();
@@ -31,7 +36,7 @@ export class WithdrawComponent implements OnInit {
     //let accounts = JSON.parse(localStorage.getItem('ACCOUNTS')) || [];
     //let myAccounts = accounts.filter(obj=>obj.userId == this.loggedInUser.id ); 
     //this.accounts = myAccounts;   
-    this.accounts = this.accountService.getMyAccounts(); 
+    this.account = this.accountService.findAccount(this.accountNo); 
   }
 
   withdraw() {
@@ -54,22 +59,10 @@ export class WithdrawComponent implements OnInit {
     this.transactions.push(transaction);
     localStorage.setItem('TRANSACTIONS', JSON.stringify(this.transactions));
 
-    alert('Successfully Withdrawn amount');
+    this.toastr.success('Successfully Withdrawn amount');
 
-    //Update balance
-    let selectedAccount = this.accounts.find(
-      (obj) => obj.accountNo == this.accountNo
-    );
-    let index = this.accounts.findIndex(
-      (obj) => obj.accountNo == this.accountNo
-    );
-    console.log(selectedAccount);
-    selectedAccount.balance = selectedAccount.balance - this.amount;
-
-    //Update account with latest balance
-    this.accounts[index] = selectedAccount;
-    localStorage.setItem('ACCOUNTS', JSON.stringify(this.accounts));
-
-    this.router.navigate(["view-account"]);
+    let transactionType= "CREDIT";
+    this.accountService.updateBalance(this.accountNo, transactionType, this.amount);
+    this.router.navigate(["view-account/" + this.accountNo]);
   }
 }

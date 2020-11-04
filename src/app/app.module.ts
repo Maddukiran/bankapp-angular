@@ -25,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ListMyAccountComponent } from './list-my-account/list-my-account.component';
 import { AccountComponent } from './account/account.component';
 import { TransactionSummaryComponent } from './transaction-summary/transaction-summary.component';
+import { TransactionTypePipe } from './transaction-type.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { TransactionSummaryComponent } from './transaction-summary/transaction-s
     ListEmployeesComponent,
     ListMyAccountComponent,
     AccountComponent,
-    TransactionSummaryComponent
+    TransactionSummaryComponent,
+    TransactionTypePipe
   ],
   imports: [
     BrowserModule,

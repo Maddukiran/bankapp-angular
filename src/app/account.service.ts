@@ -32,4 +32,23 @@ export class AccountService {
     localStorage.setItem("ACCOUNTS", JSON.stringify(accounts));
   }
 
+  updateBalance(accountNo, transactionType, amount){
+
+    
+    let accounts = this.getAllAccounts();
+    let selectedAccount = accounts.find(obj=>obj.accountNo == accountNo);
+    let index = accounts.findIndex(obj=>obj.accountNo == accountNo);
+    console.log(selectedAccount);
+    if(transactionType == "DEBIT"){
+      selectedAccount.balance= selectedAccount.balance + amount;
+    }
+    else if (transactionType == "CREDIT"){
+      selectedAccount.balance= selectedAccount.balance - amount;
+    }
+    
+    //Update account with latest balance
+    accounts[index] = selectedAccount;
+    localStorage.setItem("ACCOUNTS", JSON.stringify(accounts));
+  }
+
 }

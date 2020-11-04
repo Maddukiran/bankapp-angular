@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../account.service';
 import { AuthService } from '../auth.service';
 
@@ -23,7 +24,7 @@ export class DepositComponent implements OnInit {
   loggedInUser;
 
   
-  constructor(private route:ActivatedRoute, private router:Router, private authService: AuthService, private accountService:AccountService) { 
+  constructor(private route:ActivatedRoute, private router:Router, private authService: AuthService, private accountService:AccountService, private toastr:ToastrService) { 
     this.route.parent.params.subscribe(params=>{
       this.accountNo =  params["accountNo"];
     });
@@ -60,19 +61,14 @@ export class DepositComponent implements OnInit {
     this.transactions.push(transaction);
     localStorage.setItem("TRANSACTIONS", JSON.stringify(this.transactions));
 
-    alert("Successfully Deposited amount");
-/*
-    //Update balance
-    let selectedAccount = this.accounts.find(obj=>obj.accountNo == this.accountNo);
-    let index = this.accounts.findIndex(obj=>obj.accountNo == this.accountNo);
-    console.log(selectedAccount);
-    selectedAccount.balance= selectedAccount.balance + this.amount;
     
-    //Update account with latest balance
-    this.accounts[index] = selectedAccount;
-    localStorage.setItem("ACCOUNTS", JSON.stringify(this.accounts));
-*/
-    this.router.navigate(["view-account"]);
+
+    //Update balance
+    let transactionType = "DEBIT";
+    this.accountService.updateBalance(this.accountNo, transactionType, this.amount);
+    this.toastr.success("Successfully Deposited amount");
+
+    this.router.navigate(["view-account/" + this.accountNo]);
   }
 
 
