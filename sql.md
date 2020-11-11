@@ -84,3 +84,53 @@ select balance from accounts where id = 1;
 
 
 
+create table transactions 
+(
+id bigint primary key auto_increment,
+account_id bigint not null,
+amount int not null,
+transaction_type varchar(100) not null,
+transaction_date timestamp not null default current_timestamp,
+status varchar(100) not null,
+comments varchar(200) ,
+active boolean not null default 1,
+foreign key (account_id) references accounts (id),
+check (amount > 0 ),
+check ( transaction_type in ('DEBIT','CREDIT'))
+);
+select * from transactions;
+
+-- DEPOSIT -Rs.100o to accountNo :1
+select * from accounts;
+
+select * from users;
+
+insert into accounts ( user_id, account_type,status) values (4,'Personal','ACTIVE');
+
+update accounts set balance = balance + 10000 where id = 1;
+
+-- Add Transactionentry
+insert into transactions(account_id, transaction_type, amount,comments, status) values ( 1, 'DEBIT',10000, NULL, 'SUCCESS');
+
+select * from transactions;
+
+-- Fund Transfer from account No = 1 to Account No 3 . Transfer Amount : 2000
+update accounts set balance = balance- 2000 where id = 1;
+update accounts set balance = balance + 2000 where id = 3;
+
+insert into transactions(account_id, transaction_type, amount,comments, status) values ( 1, 'CREDIT',2000, 'To Mom', 'SUCCESS');
+insert into transactions(account_id, transaction_type, amount,comments, status) values ( 3, 'DEBIT',2000, 'To Mom', 'FAILURE');
+
+
+-- 
+select * from transactions where transaction_type='DEBIT';
+
+select * from transactions where amount > 1000 ;
+
+select * from transactions where account_id >1 and account_id < 3;
+
+select * from transactions where account_id between 1 and 3;
+
+select count(*),min(amount),max(amount),avg(amount), sum(amount) from transactions where status = 'SUCCESS';
+
+select status,count(*) from transactions group by status;
